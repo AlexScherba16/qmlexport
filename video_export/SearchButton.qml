@@ -4,27 +4,10 @@ import QtGraphicalEffects 1.12
 
 
 Rectangle {
-//    property int itemWidth: buttonLabel.contentWidth + 32
-
-    width: 96//itemWidth
+    width: 96
     height: 48
-    radius: 4
+    radius: 3
     color: "#FFFFFF"
-//    border.color : "black"
-//    border.width: 1
-    //    layer.enabled: true
-    //    layer.effect: DropShadow {
-    //        transparentBorder: true
-    //        horizontalOffset: 3
-    //        verticalOffset: 3
-    //    }
-
-    //    Rectangle {
-    //        id: background
-    //        anchors.fill: parent
-    //        color: "white"
-    //    }
-
 
     RectangularGlow {
         id: effect
@@ -35,12 +18,13 @@ Rectangle {
         cornerRadius: parent.radius + glowRadius
         z: -1
     }
+
     Text{
         id: buttonLabel
         font.family: "Roboto"
         font.styleName: "normal"
         font.weight: Font.Normal
-        font.pixelSize: 13
+        font.pixelSize: 12
 
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.verticalCenter: parent.verticalCenter
@@ -53,22 +37,18 @@ Rectangle {
         anchors.fill: parent
         hoverEnabled: true
 
-//        onPressed: parent.gradient = pressedGradient
-        onEntered: {
-            buttonLabel.font.weight = Font.Bold
-        }
-        onExited: {
+        onPressed: {
             buttonLabel.font.weight = Font.Normal
+            parent.border.color = "black"
+            parent.border.width = 1
         }
+        onEntered: buttonLabel.font.weight = Font.Bold
+        onExited: buttonLabel.font.weight = Font.Normal
 
-//        onReleased: {
-//            parent.gradient = buttonMouseArea.containsMouse ? hoverGradient :
-//                                                              normalGradient
-//            parent.importButtonClicked()
-//        }
+        onReleased: {
+            buttonLabel.font.weight = buttonMouseArea.containsMouse ? Font.Bold :
+                                                                      Font.Normal
+            parent.border.width = 0
+        }
     }
-
-
-//    Text { font.family: "Helvetica"; font.pointSize: 13; font.bold: true }
-
 }
