@@ -1,0 +1,11 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>ExitButton.qml</file>
+        <file>ImportButton.qml</file>
+        <file>ChunkButton.qml</file>
+        <file>FormatButton.qml</file>
+        <file>ExportButton.qml</file>
+        <file>SearchButton.qml</file>
+    </qresource>
+</RCC>
