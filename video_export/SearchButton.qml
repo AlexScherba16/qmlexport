@@ -36,13 +36,18 @@ Rectangle {
         z: -1
     }
     Text{
-
         id: buttonLabel
+        font.family: "Roboto"
+        font.styleName: "normal"
+        font.weight: Font.Light //Font.Normal
+        font.pixelSize: 13
+
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.verticalCenter: parent.verticalCenter
-        font.pixelSize: 12
         text: "Поиск hdd"
         color: "#17181B"
     }
+
+    Text { font.family: "Helvetica"; font.pointSize: 13; font.bold: true }
 
 }
