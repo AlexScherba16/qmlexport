@@ -4,9 +4,9 @@ import QtGraphicalEffects 1.12
 
 
 Rectangle {
-    property int chunkLength: 120
+//    property int itemWidth: buttonLabel.contentWidth + 32
 
-    width: buttonLabel.contentWidth + 32
+    width: 96//itemWidth
     height: 48
     radius: 4
     color: "#FFFFFF"
@@ -39,7 +39,7 @@ Rectangle {
         id: buttonLabel
         font.family: "Roboto"
         font.styleName: "normal"
-        font.weight: Font.Light //Font.Normal
+        font.weight: Font.Normal
         font.pixelSize: 13
 
         anchors.horizontalCenter: parent.horizontalCenter
@@ -48,6 +48,27 @@ Rectangle {
         color: "#17181B"
     }
 
-    Text { font.family: "Helvetica"; font.pointSize: 13; font.bold: true }
+    MouseArea{
+        id: buttonMouseArea
+        anchors.fill: parent
+        hoverEnabled: true
+
+//        onPressed: parent.gradient = pressedGradient
+        onEntered: {
+            buttonLabel.font.weight = Font.Bold
+        }
+        onExited: {
+            buttonLabel.font.weight = Font.Normal
+        }
+
+//        onReleased: {
+//            parent.gradient = buttonMouseArea.containsMouse ? hoverGradient :
+//                                                              normalGradient
+//            parent.importButtonClicked()
+//        }
+    }
+
+
+//    Text { font.family: "Helvetica"; font.pointSize: 13; font.bold: true }
 
 }
