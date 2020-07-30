@@ -5,12 +5,10 @@ import QtGraphicalEffects 1.12
 Rectangle {
     property int chunkLength: 120
 
-    width: lower.contentWidth + 32
+    width: 150
     height: 48
     radius: 3
     color: "#FFFFFF"
-//    border.color : "black"
-//    border.width: 1
 
     RectangularGlow {
         id: effect
@@ -21,25 +19,60 @@ Rectangle {
         cornerRadius: parent.radius + glowRadius
         z: -1
     }
-    Text{
 
+    Text{
         id: upper
+        font.family: "Roboto"
+        font.styleName: "normal"
+        font.weight: Font.Normal
+        font.pixelSize: 12
+
         anchors.top: parent.top
         anchors.topMargin: 7
         anchors.horizontalCenter: parent.horizontalCenter
-        font.pixelSize: 12
         text: "Длительность"
         color: "#17181B"
     }
 
     Text{
-
         id: lower
+        font.family: "Roboto"
+        font.styleName: "normal"
+        font.weight: Font.Normal
+        font.pixelSize: 12
+
         anchors.bottom: parent.bottom
         anchors.bottomMargin: 7
         anchors.horizontalCenter: parent.horizontalCenter
-        font.pixelSize: 12
         text: "фрагментов 10 мин"
         color: "#17181B"
+    }
+
+    MouseArea{
+        id: buttonMouseArea
+        anchors.fill: parent
+        hoverEnabled: true
+
+        onPressed: {
+            upper.font.weight = Font.Normal
+            lower.font.weight = Font.Normal
+            parent.border.color = "black"
+            parent.border.width = 1
+        }
+        onEntered:{
+            upper.font.weight = Font.Bold
+            lower.font.weight = Font.Bold
+        }
+        onExited: {
+            upper.font.weight = Font.Normal
+            lower.font.weight = Font.Normal
+        }
+
+        onReleased: {
+            upper.font.weight = buttonMouseArea.containsMouse ? Font.Bold :
+                                                                Font.Normal
+            lower.font.weight = upper.font.weight
+            parent.border.width = 0
+        }
     }
 }
