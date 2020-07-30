@@ -4,27 +4,10 @@ import QtGraphicalEffects 1.12
 
 
 Rectangle {
-    property int chunkLength: 120
-
-    width: buttonLabel.contentWidth + 32
+    width: 96
     height: 48
-    radius: 4
+    radius: 3
     color: "#FFFFFF"
-//    border.color : "black"
-//    border.width: 1
-    //    layer.enabled: true
-    //    layer.effect: DropShadow {
-    //        transparentBorder: true
-    //        horizontalOffset: 3
-    //        verticalOffset: 3
-    //    }
-
-    //    Rectangle {
-    //        id: background
-    //        anchors.fill: parent
-    //        color: "white"
-    //    }
-
 
     RectangularGlow {
         id: effect
@@ -35,14 +18,37 @@ Rectangle {
         cornerRadius: parent.radius + glowRadius
         z: -1
     }
-    Text{
 
+    Text{
         id: buttonLabel
+        font.family: "Roboto"
+        font.styleName: "normal"
+        font.weight: Font.Normal
+        font.pixelSize: 12
+
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.verticalCenter: parent.verticalCenter
-        font.pixelSize: 12
         text: "Поиск hdd"
         color: "#17181B"
     }
 
+    MouseArea{
+        id: buttonMouseArea
+        anchors.fill: parent
+        hoverEnabled: true
+
+        onPressed: {
+            buttonLabel.font.weight = Font.Normal
+            parent.border.color = "black"
+            parent.border.width = 1
+        }
+        onEntered: buttonLabel.font.weight = Font.Bold
+        onExited: buttonLabel.font.weight = Font.Normal
+
+        onReleased: {
+            buttonLabel.font.weight = buttonMouseArea.containsMouse ? Font.Bold :
+                                                                      Font.Normal
+            parent.border.width = 0
+        }
+    }
 }
