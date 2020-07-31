@@ -3,13 +3,15 @@ import QtQuick.Window 2.12
 
 
 Window {
+    id: window
     visible: true
-    width: 640
+    width: 652
     height: 480
     minimumHeight: 480
     minimumWidth: 780
     flags: Qt.CoverWindow
-//    title: qsTr("Hello World")
+    //    title: qsTr("Hello World")
+
 
     SearchButton{
         anchors.topMargin: 20
@@ -64,4 +66,12 @@ Window {
     }
 
 
+
+    FormatDialog {
+        id: formatDialog
+        x: 126
+        y: 128
+        anchors.verticalCenter: parent.verticalCenter
+        anchors.left: exportButton.left
+    }
 }

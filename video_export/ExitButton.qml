@@ -8,6 +8,7 @@ Rectangle {
 
     width: buttonLabel.contentWidth + 32
     height: 48
+    color: "#000000"
     radius: 3
 
     signal exitButtonClicked()
