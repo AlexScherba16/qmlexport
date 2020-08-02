@@ -4,8 +4,6 @@ import QtQuick.Controls 2.12
 
 Rectangle {
     id: exitButton
-    property string buttonText:"GradientButton"
-
     width: buttonLabel.contentWidth + 32
     height: 48
     color: "#000000"
@@ -40,7 +38,7 @@ Rectangle {
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.verticalCenter: parent.verticalCenter
         font.pixelSize: 12
-        text: parent.buttonText
+        text: "Выход"
         color: "#FFFFFF"
     }
 

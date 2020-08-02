@@ -2,8 +2,7 @@ import QtQuick 2.12
 import QtQuick.Controls 2.12
 
 Rectangle {
-    property string buttonText:"GradientButton"
-
+    id: importButton
     width: buttonLabel.contentWidth + 32
     height: 48
     radius: 3
@@ -36,7 +35,7 @@ Rectangle {
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.verticalCenter: parent.verticalCenter
         font.pixelSize: 12
-        text: parent.buttonText
+        text: "Импортировать"
         color: "#FFFFFF"
     }
 
