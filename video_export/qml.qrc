@@ -1,11 +1,14 @@
 <RCC>
     <qresource prefix="/">
         <file>main.qml</file>
-        <file>ExitButton.qml</file>
-        <file>ImportButton.qml</file>
-        <file>ChunkButton.qml</file>
-        <file>FormatButton.qml</file>
-        <file>ExportButton.qml</file>
-        <file>SearchButton.qml</file>
+        <file>menu_component/ChunkButton.qml</file>
+        <file>menu_component/ChunkDialog.qml</file>
+        <file>menu_component/ExitButton.qml</file>
+        <file>menu_component/ExportButton.qml</file>
+        <file>menu_component/FormatButton.qml</file>
+        <file>menu_component/FormatDialog.qml</file>
+        <file>menu_component/ImportButton.qml</file>
+        <file>menu_component/Menu.qml</file>
+        <file>menu_component/SearchButton.qml</file>
     </qresource>
 </RCC>
