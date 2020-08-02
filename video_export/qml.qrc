@@ -8,5 +8,6 @@
         <file>ExportButton.qml</file>
         <file>SearchButton.qml</file>
         <file>FormatDialog.qml</file>
+        <file>ChunkDialog.qml</file>
     </qresource>
 </RCC>

@@ -3,7 +3,6 @@ import QtQuick.Controls 2.12
 import QtGraphicalEffects 1.12
 
 Rectangle {
-
     id: root
     width: 136
     height: 48
@@ -11,7 +10,7 @@ Rectangle {
     color: "#FFFFFF"
 
     property string exportFormat: "avi"
-    property FormatDialog win;
+    property FormatDialog win
 
     RectangularGlow {
         id: effect

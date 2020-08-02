@@ -3,12 +3,14 @@ import QtQuick.Controls 2.12
 import QtGraphicalEffects 1.12
 
 Rectangle {
-    property int chunkLength: 120
-
+    id: root
     width: 150
     height: 48
     radius: 3
     color: "#FFFFFF"
+
+    property int chunkLength: 600
+    property ChunkDialog win
 
     RectangularGlow {
         id: effect
@@ -44,7 +46,7 @@ Rectangle {
         anchors.bottom: parent.bottom
         anchors.bottomMargin: 7
         anchors.horizontalCenter: parent.horizontalCenter
-        text: "фрагментов 10 мин"
+        text: "фрагментов " + 10 +" мин"
         color: "#17181B"
     }
 
@@ -73,6 +75,23 @@ Rectangle {
                                                                 Font.Normal
             lower.font.weight = upper.font.weight
             parent.border.width = 0
+            var component = Qt.createComponent("ChunkDialog.qml");
+            win = component.createObject(root);
+            win.show();
+        }
+    }
+
+    Connections {
+        target: win
+        function onExitChunkDialog(result) {
+            root.chunkLength = result
+            if (result === 0){
+                lower.text = "без разбивки"
+            }
+            else{
+                lower.text = "фрагментов " + result +" мин"
+            }
+            win.destroy()
         }
     }
 }
