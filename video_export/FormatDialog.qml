@@ -1,13 +1,17 @@
 import QtQuick 2.12
 import QtQuick.Controls 2.12
+import QtQuick.Window 2.1
 
-Rectangle {
+Window {
     id: root
     width: 232
     height: 224
     color: "#ffffff"
-    property alias importButton: importButton
-    border.width: 2
+    flags :  Qt.Dialog | Qt.CustomizeWindowHint
+    modality: Qt.WindowModal
+
+    property string currentExportFormat: "TEST_FORMAT"
+    signal exitFormatDialog(string format)
 
     Rectangle {
         id: handler
@@ -17,15 +21,8 @@ Rectangle {
         anchors.top: parent.top
         gradient: Gradient {
             orientation: Gradient.Horizontal
-            GradientStop {
-                position: 0
-                color: "#1e2d4b"
-            }
-
-            GradientStop {
-                position: 1
-                color: "#323e70"
-            }
+            GradientStop { position: 0; color: "#1e2d4b" }
+            GradientStop { position: 1; color: "#323e70" }
         }
 
         Text {
@@ -85,23 +82,64 @@ Rectangle {
         anchors.left: aviButton.left
     }
 
-    ImportButton {
-        id: importButton
-        buttonText: "Ok"
+    Rectangle {
+        id: okButton
+        y: 175
+        height: 32
 
-        x: 38
-        y: 171
-        width: 159
-        height: 39
+        Gradient {
+            id: normalGradient
+            orientation: Gradient.Horizontal
+            GradientStop { position: 0.0; color: "#1E2D4B"}
+            GradientStop { position: 1.0; color: "#323E70"}
+        }
+
+        Gradient {
+            id: pressedGradient
+            orientation: Gradient.Horizontal
+            GradientStop { position: 0.0; color: "#1A2741"}
+            GradientStop { position: 1.0; color: "#1A2741"}
+        }
+        Gradient {
+            id: hoverGradient
+            orientation: Gradient.Horizontal
+            GradientStop { position: 0.0; color: "#233B6C" }
+            GradientStop { position: 1.0; color: "#4E5EA0" }
+        }
+
+        anchors.bottom: parent.bottom
+        anchors.bottomMargin: 16
+        anchors.right: parent.right
+        anchors.rightMargin: 30
+        anchors.left: parent.left
+        anchors.leftMargin: 30
+
+        Text {
+            id: okText
+            color: "#ffffff"
+            text: qsTr("Ок")
+            font.family: "Roboto"
+            verticalAlignment: Text.AlignVCenter
+            horizontalAlignment: Text.AlignHCenter
+            anchors.fill: parent
+            font.pixelSize: 14
+        }
+        MouseArea{
+            id: buttonMouseArea
+            anchors.fill: parent
+            hoverEnabled: true
+
+            onPressed: parent.gradient = pressedGradient
+            onEntered: parent.gradient = hoverGradient
+            onExited: parent.gradient = normalGradient
+
+            onReleased: {
+                if(aviButton.checked)
+                    root.exitFormatDialog(aviButton.text)
+                if(mp4Button.checked)
+                    root.exitFormatDialog(mp4Button.text)
+            }
+        }
+        gradient: buttonMouseArea.pressed ? pressedGradient : normalGradient
     }
-
-
 }
-
-
-/*##^##
-Designer {
-    D{i:5;anchors_x:57}D{i:1;anchors_width:208;anchors_x:12;anchors_y:17}D{i:6;anchors_y:115}
-D{i:7;anchors_x:173}D{i:8;anchors_x:173;anchors_y:151}
-}
-##^##*/

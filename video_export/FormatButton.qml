@@ -4,12 +4,14 @@ import QtGraphicalEffects 1.12
 
 Rectangle {
 
-    property string exportFormat: "AVI"
-
+    id: root
     width: 136
     height: 48
     radius: 3
     color: "#FFFFFF"
+
+    property string exportFormat: "avi"
+    property FormatDialog win;
 
     RectangularGlow {
         id: effect
@@ -74,6 +76,18 @@ Rectangle {
                                                                 Font.Normal
             lower.font.weight = upper.font.weight
             parent.border.width = 0
+            var component = Qt.createComponent("FormatDialog.qml");
+            win = component.createObject(root);
+            win.show();
+
+        }
+    }
+
+    Connections {
+        target: win
+        function onExitFormatDialog(result) {
+            root.exportFormat = result
+            win.destroy()
         }
     }
 }

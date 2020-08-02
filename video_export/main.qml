@@ -64,14 +64,4 @@ Window {
         buttonText: "Выход"
         onExitButtonClicked: Qt.quit()
     }
-
-
-
-    FormatDialog {
-        id: formatDialog
-        x: 126
-        y: 128
-        anchors.verticalCenter: parent.verticalCenter
-        anchors.left: exportButton.left
-    }
 }
